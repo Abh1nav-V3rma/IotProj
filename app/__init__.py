@@ -2,7 +2,6 @@ from flask import Flask
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import logging
-from .camera import modify_settings
 import os
 
 try:
@@ -11,17 +10,17 @@ try:
 except Exception as err:
     logging.error(f'Error loading environment variables: {err}')
 
-try:
-    if not modify_settings('framesize', 11):
-        logging.error('Error configuring framesize')
+# try:
+#     if not modify_settings('framesize', 11):
+#         logging.error('Error configuring framesize')
 
-    if not modify_settings('led_intensity', 0):
-        logging.error('Error configuring led_intensity')
+#     if not modify_settings('led_intensity', 0):
+#         logging.error('Error configuring led_intensity')
 
-    logging.info('Camera settings configured')
+#     logging.info('Camera settings configured')
     
-except Exception as err:
-    logging.error(f'Error configuring camera settings: {err}')
+# except Exception as err:
+#     logging.error(f'Error configuring camera settings: {err}')
 
 
 app = Flask(__name__)

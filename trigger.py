@@ -6,7 +6,7 @@ import datetime
 while True:
     try:
         image_time = int(datetime.datetime.now(datetime.UTC).timestamp())
-        response = detection("http://0.0.0.0:9090/detect").text
+        response = detection("http://127.0.0.1:9090/detect").text
         if response == 'No animal detected':
             pass
         else:

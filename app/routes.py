@@ -7,8 +7,7 @@ import logging
 from .detect import detect_animal
 import os
 
-from pydub import AudioSegment
-from pydub.playback import play
+from playsound import playsound
 
 @app.route('/detect', methods=['GET'])
 def detect():
@@ -40,8 +39,13 @@ def detect():
         # Play a sound based on the detected animal
         original_animal = animal
         for i in range(int(os.getenv('MAX_TRIES'))):
-            audio = AudioSegment.from_file(f'sounds/scare.mp3')
-            play(audio)
+
+            soundpath = "./sounds/scare.mp3"
+
+            try:
+                playsound(soundpath)
+            except Exception as err:
+                logging.error(f'Error playing sound: {err}')
 
             image_data = take_snapshot()
             image_time = int(datetime.datetime.now(datetime.UTC).timestamp())
